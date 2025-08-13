@@ -434,6 +434,11 @@ input[type="text"], input[type="number"], input[type="email"], select {
     border-color: var(--accent-fitness);
     background-color: color-mix(in srgb, var(--accent-fitness) 10%, transparent);
 }
+#diet-days-nav .day-btn.active {
+    color: var(--accent-diet);
+    border-color: var(--accent-diet);
+    background-color: color-mix(in srgb, var(--accent-diet) 10%, transparent);
+}
 [data-theme="solo-leveling"] .day-btn.active {
     color: #fff;
     background-color: var(--accent-fitness);
@@ -541,12 +546,12 @@ input[type="text"], input[type="number"], input[type="email"], select {
     display: block;
 }
 .meal-card h4 {
-    margin-bottom: 1rem;
-    border-bottom: 1px solid var(--border-color);
-    padding-bottom: 0.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--heading-color);
 }
-.meal-card ul li {
-    padding: 0.25rem 0;
+.meal-card p {
+    margin-bottom: 1rem;
+    color: var(--text-color);
 }
 
 /* --- Rewards Section --- */
