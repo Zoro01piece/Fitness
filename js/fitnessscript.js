@@ -264,10 +264,10 @@ document.addEventListener('DOMContentLoaded', () => {
             workoutPlanContent.appendChild(planContainer);
         }
 
-        setActiveDay(workoutDaysNav);
+        setActiveDay(workoutDaysNav, 'plan');
     }
 
-    function setActiveDay(navElement) {
+    function setActiveDay(navElement, type) {
         const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
         const today = dayNames[new Date().getDay()];
         
@@ -280,8 +280,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const activeBtn = navElement.querySelector(`[data-day="${today}"]`);
         if (activeBtn) {
             activeBtn.classList.add('active');
-            const activeContentId = activeBtn.id.replace('btn', 'content');
-            const activeContent = document.getElementById(activeContentId);
+            const activeContent = document.getElementById(`${type}-${today}`);
             if (activeContent) {
                 activeContent.classList.add('active');
             }
@@ -308,10 +307,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     workoutDaysNav.addEventListener('click', (e) => {
         if (e.target.classList.contains('day-btn')) {
-            const currentActiveBtn = workoutDaysNav.querySelector('.active');
-            if (currentActiveBtn) currentActiveBtn.classList.remove('active');
-            const currentActivePlan = workoutPlanContent.querySelector('.active');
-            if (currentActivePlan) currentActivePlan.classList.remove('active');
+            workoutDaysNav.querySelector('.active')?.classList.remove('active');
+            workoutPlanContent.querySelector('.active')?.classList.remove('active');
 
             const day = e.target.dataset.day;
             e.target.classList.add('active');
@@ -396,12 +393,11 @@ document.addEventListener('DOMContentLoaded', () => {
             dayBtn.className = 'day-btn';
             dayBtn.textContent = day;
             dayBtn.dataset.day = day;
-            dayBtn.id = `diet-btn-${day}`;
             dietDaysNav.appendChild(dayBtn);
 
             const mealContainer = document.createElement('div');
             mealContainer.className = 'meal-card';
-            mealContainer.id = `diet-content-${day}`;
+            mealContainer.id = `diet-${day}`;
             
             let mealHTML = '';
             Object.entries(plan[day]).forEach(([mealTime, meal]) => {
@@ -411,22 +407,7 @@ document.addEventListener('DOMContentLoaded', () => {
             dietPlanContainer.appendChild(mealContainer);
         });
         
-        setActiveDietDay();
-    }
-    
-    function setActiveDietDay() {
-        const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-        const today = dayNames[new Date().getDay()];
-        
-        dietDaysNav.querySelectorAll('.active').forEach(el => el.classList.remove('active'));
-        dietPlanContainer.querySelectorAll('.active').forEach(el => el.classList.remove('active'));
-
-        const activeBtn = dietDaysNav.querySelector(`[data-day="${today}"]`);
-        if (activeBtn) {
-            activeBtn.classList.add('active');
-            const activeContent = document.getElementById(`diet-content-${today}`);
-            if (activeContent) activeContent.classList.add('active');
-        }
+        setActiveDay(dietDaysNav, 'diet');
     }
 
     dietDaysNav.addEventListener('click', (e) => {
@@ -436,7 +417,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             const day = e.target.dataset.day;
             e.target.classList.add('active');
-            document.getElementById(`diet-content-${day}`).classList.add('active');
+            document.getElementById(`diet-${day}`).classList.add('active');
         }
     });
 
