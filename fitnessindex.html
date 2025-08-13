@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zenith - Your Personal Wellness Hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/fitnessstyle.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧘</text></svg>">
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="logo">
+            <h1>Zenith</h1>
+        </div>
+        <div class="header-controls">
+            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark and light mode">
+                <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24"><path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.106a.75.75 0 010 1.06l-1.591 1.59a.75.75 0 11-1.06-1.06l1.59-1.59a.75.75 0 011.06 0zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.894 17.894a.75.75 0 01-1.06 0l-1.59-1.591a.75.75 0 111.06-1.06l1.59 1.59a.75.75 0 010 1.06zM12 18.75a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0v-2.25a.75.75 0 01.75-.75zM5.106 17.894a.75.75 0 010-1.06l1.59-1.59a.75.75 0 011.06 1.06l-1.59 1.59a.75.75 0 01-1.06 0zM2.25 12a.75.75 0 01.75-.75h2.25a.75.75 0 010 1.5H3a.75.75 0 01-.75-.75zM6.106 5.106a.75.75 0 011.06 0l1.591 1.59a.75.75 0 01-1.06 1.06l-1.59-1.591a.75.75 0 010-1.06z" /></svg>
+                <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24"><path fill-rule="evenodd" d="M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 004.472-.69a.75.75 0 01.819.162l.309.286a.75.75 0 01-.55.945A11.953 11.953 0 0112 21a11.953 11.953 0 01-8.31-3.782.75.75 0 01-.55-.945l.309-.286a.75.75 0 01.819-.162A8.97 8.97 0 003 15.002a9 9 0 009-9 8.97 8.97 0 00-2.472-.69.75.75 0 01-.162-.819l-.286-.31a.75.75 0 01.945-.55z" clip-rule="evenodd" /></svg>
+            </button>
+            <button id="profile-icon" class="profile-icon" aria-label="Open profile">👤</button>
+        </div>
+    </header>
+
+    <main>
+        <section class="card quote-card">
+            <h2>Quote of the Day</h2>
+            <blockquote id="quote-text">Loading...</blockquote>
+            <cite id="quote-author"></cite>
+        </section>
+
+        <section id="dashboard" class="content-section">
+            <h2 class="section-title">Dashboard</h2>
+            <div class="dashboard-grid">
+                <section class="card journal-card">
+                    <h3>Daily Journal</h3>
+                    <div class="journal-grid">
+                        <div class="journal-item">
+                            <h4>To-Do List</h4>
+                            <form id="todo-form">
+                                <input type="text" id="todo-input" placeholder="Add a new task..." autocomplete="off">
+                                <button type="submit" aria-label="Add task">+</button>
+                            </form>
+                            <ul id="todo-list"></ul>
+                        </div>
+                        <div class="journal-item">
+                            <h4>Mood Tracker</h4>
+                            <div id="mood-tracker" class="mood-options">
+                                <button class="mood-btn" data-mood="😊">😊</button>
+                                <button class="mood-btn" data-mood="🙂">🙂</button>
+                                <button class="mood-btn" data-mood="😐">😐</button>
+                                <button class="mood-btn" data-mood="😕">😕</button>
+                                <button class="mood-btn" data-mood="😠">😠</button>
+                            </div>
+                            <p>Today's mood: <span id="current-mood">Not set</span></p>
+                        </div>
+                        <div class="journal-item">
+                            <h4>Hydration Log</h4>
+                            <div class="hydration-tracker">
+                                <p><span id="hydration-count">0</span> / 8 glasses</p>
+                                <div class="hydration-buttons">
+                                    <button id="add-glass-btn">+</button>
+                                    <button id="reset-hydration-btn">Reset</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="card calendar-card">
+                    <h3>Activity Calendar</h3>
+                    <div id="calendar-container">
+                        <!-- Calendar will be generated by JS -->
+                    </div>
+                </section>
+            </div>
+        </section>
+
+        <section id="fitness" class="content-section">
+            <div class="section-header">
+                <h2 class="section-title">Weekly Workout Plan</h2>
+                <div class="workout-plan-selector">
+                    <label for="plan-select">Choose Plan:</label>
+                    <select id="plan-select">
+                        <option value="standard">Standard Plan</option>
+                        <option value="soloLeveling">Solo Leveling</option>
+                        <option value="yoga">Yoga Flow</option>
+                        <option value="breathing">Mindful Breathing</option>
+                        <option value="calisthenics">Calisthenics</option>
+                    </select>
+                </div>
+            </div>
+            <div class="fitness-container">
+                <div class="workout-plan-card">
+                    <nav id="workout-days-nav" class="workout-days-nav"></nav>
+                    <div id="workout-plan-content"></div>
+                </div>
+                <div class="workout-log-card">
+                    <h4>Today's Completed Exercises</h4>
+                    <ul id="workout-list">
+                        <li class="placeholder">Check off exercises to log them.</li>
+                    </ul>
+                </div>
+            </div>
+            <div id="height-weight-table-container" class="card">
+                <h4>Height vs. Weight Reference</h4>
+                <table id="height-weight-table">
+                    <thead>
+                        <tr><th>Height</th><th>Healthy Weight Range</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>5' 0" (152 cm)</td><td>41 - 52 kg</td></tr>
+                        <tr><td>5' 4" (163 cm)</td><td>50 - 64 kg</td></tr>
+                        <tr><td>5' 8" (173 cm)</td><td>60 - 77 kg</td></tr>
+                        <tr><td>6' 0" (183 cm)</td><td>72 - 91 kg</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="diet" class="content-section">
+            <div class="section-header">
+                <h2 class="section-title">Weekly Diet Plan</h2>
+                <div class="workout-plan-selector">
+                    <label for="diet-plan-select">Choose Diet:</label>
+                    <select id="diet-plan-select">
+                        <option value="balanced">Balanced Diet</option>
+                        <option value="keto">Keto Diet</option>
+                        <option value="vegan">Vegan Diet</option>
+                    </select>
+                </div>
+            </div>
+            <div class="diet-plan-card">
+                <nav id="diet-days-nav" class="workout-days-nav"></nav>
+                <div id="diet-plan-container" class="diet-plan-container">
+                    <!-- Diet plan will be rendered here by JS -->
+                </div>
+            </div>
+        </section>
+
+        <section id="rewards" class="content-section">
+            <h2 class="section-title">Your Rewards</h2>
+            <div class="rewards-summary">
+                <p>You have <span id="coupon-count">0</span> coupons!</p>
+                <button id="redeem-btn">Redeem Now</button>
+            </div>
+            <div id="rewards-grid" class="rewards-grid">
+                <!-- Coupons will be rendered here by JS -->
+            </div>
+        </section>
+
+        <section id="games" class="content-section">
+            <h2 class="section-title">Mind Games</h2>
+            <div class="games-grid">
+                <div class="game-launcher-card" data-game="memory">
+                    <h3>Memory Match</h3><p>Test your recall skills.</p><button class="play-btn">Play Now</button>
+                </div>
+                <div class="game-launcher-card" data-game="sudoku">
+                    <h3>Sudoku</h3><p>A classic logic puzzle.</p><button class="play-btn">Play Now</button>
+                </div>
+                <div class="game-launcher-card" data-game="hangman">
+                    <h3>Hangman</h3><p>Guess the secret word.</p><button class="play-btn">Play Now</button>
+                </div>
+                <div class="game-launcher-card" data-game="2048">
+                    <h3>2048</h3><p>Slide and merge tiles.</p><button class="play-btn">Play Now</button>
+                </div>
+                <div class="game-launcher-card" data-game="minesweeper">
+                    <h3>Minesweeper</h3><p>Avoid the hidden bombs.</p><button class="play-btn">Play Now</button>
+                </div>
+                <div class="game-launcher-card soon"><h3>Logic Puzzles</h3><p>Challenge your mind.</p><button class="play-btn" disabled>Coming Soon</button></div>
+            </div>
+        </section>
+    </main>
+
+    <div id="game-modal" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" aria-label="Close game window">&times;</button>
+            <div id="game-container"></div>
+        </div>
+    </div>
+
+    <div id="profile-modal" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" aria-label="Close profile window">&times;</button>
+            <div id="profile-container">
+                <!-- Profile content will be rendered here by JS -->
+            </div>
+        </div>
+    </div>
+
+    <script src="js/fitnessscript.js"></script>
+
+</body>
+</html>
